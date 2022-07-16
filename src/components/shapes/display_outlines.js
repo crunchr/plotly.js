@@ -57,7 +57,12 @@ module.exports = function displayOutlines(polygons, outlines, dragOptions, nCall
         }
 
         if(Object.keys(updateObject).length) {
-            Registry.call((opts || {}).redrawing ? 'relayout' : '_guiRelayout', gd, updateObject);
+            Registry.call((opts || {}).redrawing ? 'relayout' : '_guiRelayout', gd, updateObject)
+            .then(function() {
+                if(gd._fullLayout._activeSelectionIndex >= 0) {
+                    Registry.getComponentMethod('selections', 'emitSelected')(gd);
+                }
+            });
         }
     }
 

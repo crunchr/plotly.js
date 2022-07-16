@@ -538,10 +538,6 @@ function selectOnClick(evt, gd, xAxes, yAxes, subplot, dragOptions, polygonOutli
                 // display polygons on the screen
                 displayOutlines(convertPoly(polygons, isOpenMode), polygonOutlines, dragOptions);
             }
-
-            if(sendEvents) {
-                emitSelected(gd, eventData);
-            }
         }
     }
 }
@@ -1214,8 +1210,6 @@ function reselect(gd, selectionTesters, searchTraces, dragOptions) {
 
                 fillRangeItems(eventData, poly);
             }
-
-            emitSelected(gd, eventData);
         }
 
         fullLayout._reselect = false;
@@ -1234,9 +1228,7 @@ function reselect(gd, selectionTesters, searchTraces, dragOptions) {
         }
 
         if(sendEvents) {
-            if(eventData.points.length) {
-                emitSelected(gd, eventData);
-            } else {
+            if(!eventData.points.length) {
                 gd.emit('plotly_deselect', null);
             }
         }
@@ -1529,13 +1521,11 @@ function emitSelecting(gd, eventData) {
 }
 
 function emitSelected(gd, eventData) {
-    if(gd._fullLayout) {
-        gd._fullLayout._emitSelected = false;
-    }
-
     if(eventData) {
         eventData.selections = (gd.layout || {}).selections || [];
     }
+
+    console.log('emit')
 
     gd.emit('plotly_selected', eventData);
 }
