@@ -1529,6 +1529,10 @@ function emitSelecting(gd, eventData) {
 }
 
 function emitSelected(gd, eventData) {
+    if(gd._fullLayout) {
+        gd._fullLayout._emitSelected = false;
+    }
+
     if(eventData) {
         eventData.selections = (gd.layout || {}).selections || [];
     }
@@ -1541,6 +1545,7 @@ function emitDeselect(gd) {
 }
 
 module.exports = {
+    emitSelected: emitSelected,
     reselect: reselect,
     prepSelect: prepSelect,
     clearOutline: clearOutline,

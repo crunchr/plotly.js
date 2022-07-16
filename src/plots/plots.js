@@ -3365,6 +3365,23 @@ plots.redrag = function(gd) {
 
 plots.reselect = function(gd) {
     Registry.getComponentMethod('selections', 'reselect')(gd);
+
+    var fullLayout = gd._fullLayout;
+
+    if(fullLayout._emitSelected) {
+        fullLayout._emitSelected = false;
+
+        var A = (gd.layout || {}).selections;
+        var B = fullLayout._previousSelections;
+        if(
+            JSON.stringify({selections: A}) !==
+            JSON.stringify({selections: B})
+        ) {
+            Registry.getComponentMethod('selections', 'emitSelected')(gd);
+
+            fullLayout._previousSelections = A;
+        }
+    }
 };
 
 plots.generalUpdatePerTraceModule = function(gd, subplot, subplotCalcData, subplotLayout) {

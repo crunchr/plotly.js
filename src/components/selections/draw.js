@@ -47,6 +47,8 @@ function draw(gd) {
 }
 
 function drawOne(gd, index) {
+    gd._fullLayout._emitSelected = true;
+
     // remove the existing selection if there is one.
     // because indices can change, we need to look in all selection layers
     gd._fullLayout._paperdiv

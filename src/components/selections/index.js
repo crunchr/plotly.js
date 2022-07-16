@@ -15,6 +15,7 @@ module.exports = {
     draw: drawModule.draw,
     drawOne: drawModule.drawOne,
 
+    emitSelected: select.emitSelected,
     reselect: select.reselect,
     prepSelect: select.prepSelect,
     clearOutline: select.clearOutline,
