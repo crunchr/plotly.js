@@ -423,7 +423,7 @@ function prepSelect(evt, startX, startY, dragOptions, mode) {
                       dragOptions.subplot, dragOptions, outlines);
                 }
 
-                if(clickmode === 'event') {
+                if(clickmode === 'event' && !gd._fullLayout.selections.length) {
                     // TODO: remove in v3 - this was probably never intended to work as it does,
                     // but in case anyone depends on it we don't want to break it now.
                     // Note that click-to-select introduced pre v3 also emitts proper
