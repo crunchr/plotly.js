@@ -1309,7 +1309,7 @@ function nodeHash(node) {
  * - context._exportedPlot {boolean}
  */
 drawing.setClipUrl = function(s, localId, gd) {
-    s.attr('clip-path', getFullUrl(localId, gd));
+    s.attr('clip-path', 'url(#' + localId + ')');
 };
 
 function getFullUrl(localId, gd) {
