@@ -1,6 +1,6 @@
 {
   "name": "plotly-crunchr",
-  "version": "99.2.13.1",
+  "version": "99.99.0-2.13.1",
   "description": "Fork of Plotly for internal use by Crunchr",
   "license": "MIT",
   "main": "./lib/index.js",
